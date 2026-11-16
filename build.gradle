@@ -1,0 +1,19 @@
+buildscript {
+    repositories { google(); mavenCentral() }
+    dependencies { classpath 'com.android.tools.build:gradle:8.7.3' }
+}
+apply plugin: 'com.android.application'
+android {
+    namespace 'local.honor.transparentkeyboard'
+    compileSdk 35
+    buildToolsVersion '35.0.1'
+    defaultConfig {
+        applicationId 'local.honor.transparentkeyboard'
+        minSdk 29
+        targetSdk 33
+        versionCode 9
+        versionName '1.7'
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
+}
+dependencies { compileOnly 'de.robv.android.xposed:api:82' }
