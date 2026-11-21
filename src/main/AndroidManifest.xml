@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application android:label="荣耀通透键盘·全局" android:allowBackup="false" android:supportsRtl="true">
+        <activity android:name=".KeyboardOpticsTestActivity" android:exported="false"
+            android:windowSoftInputMode="adjustNothing|stateAlwaysVisible"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
         <provider android:name=".SettingsProvider" android:authorities="local.honor.transparentkeyboard.settings" android:exported="true" />
-        <activity android:name=".PreviewActivity" android:exported="true" android:windowSoftInputMode="adjustNothing|stateAlwaysVisible" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity android:name=".PreviewActivity" android:exported="true" android:windowSoftInputMode="adjustResize|stateAlwaysHidden" android:theme="@android:style/Theme.Material.Light.NoActionBar">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>
         <meta-data android:name="xposedmodule" android:value="true" />

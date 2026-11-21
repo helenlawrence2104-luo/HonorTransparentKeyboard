@@ -1,0 +1,33 @@
+name: Publish HonorTransparentKeyboard v1.9.23
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-v1.9.23.yml', 'release/v1.9.23/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Verify tested APK
+        run: |
+          git init -q .
+          git fetch --depth=1 "https://github.com/$GITHUB_REPOSITORY.git" "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+          cd release/v1.9.23
+          sha256sum --check SHA256SUMS
+      - name: Publish release
+        run: |
+          if gh release view v1.9.23 >/dev/null 2>&1; then
+            echo 'Release v1.9.23 already exists'
+            exit 1
+          fi
+          gh release create v1.9.23 --target "$GITHUB_SHA" \
+            --title '荣耀通透键盘 1.9.23' \
+            --notes-file release/v1.9.23/RELEASE_NOTES.md \
+            release/v1.9.23/HonorTransparentKeyboard-v1.9.23.apk \
+            release/v1.9.23/SHA256SUMS

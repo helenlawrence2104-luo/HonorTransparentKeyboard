@@ -24,3 +24,8 @@
 ## 构建依赖
 
 Android/Gradle/Xposed 等依赖通过构建配置引用，本次不把它们的安装包、缓存、JAR 或第三方反编译源码打包进仓库。它们各自的许可证与使用条件不因本项目而改变；以后若发布二进制或捆绑依赖，仍须重新核对相应分发义务。
+## LiquidGlassOptics 中的额外移植与行为参考（v1.8.3 Preview 同窗口验证）
+
+- `LiquidGlassOptics.java` 中的圆角矩形 SDF、圆周映射边缘折射和梯度偏移，移植自 Kyant0/AndroidLiquidGlass（Copyright 2025 Kyant，Apache License 2.0）。既有 `licenses/Apache-2.0-AndroidLiquidGlass.txt` 仍然适用。
+- 默认位移/模糊/饱和、轻微色散、over-light（位移减半、额外霜化、暗层，而不是描边）以及文字后叠且不进入滤镜，参考 liquid-glass-react（https://github.com/rdev/liquid-glass-react，Copyright 2025 MAX ROVENSKY，MIT License）的公开行为说明。本仓库未复制其 SVG/CSS/React 源码或位移 JPEG。若以后复制这些资产或实质性源码，须完整保留 MIT 版权声明。
+- 该光学路径目前只用于 Preview 内置公开测试图案的同窗口采样，不是 iOS 26 原生渲染，也不是跨应用真折射。

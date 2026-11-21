@@ -18,13 +18,22 @@ public final class SettingsProvider extends ContentProvider {
         Bundle out = new Bundle();
         if ("get".equals(method)) {
             SharedPreferences p = getContext().getSharedPreferences(PREFS, 0);
-            out.putInt("degree", p.getInt("degree", 60));
-            out.putInt("material", p.getInt("material", 0));
-            out.putInt("blur", p.getInt("blur", -1));
-            out.putInt("keys", p.getInt("keys", 45));
-            out.putInt("glass", p.getInt("glass", 60));
+            out.putInt("degree", p.getInt("degree", PreviewSettings.DEFAULT_DEGREE));
+            out.putInt("followSystem", p.getInt("followSystem", 1));
+            out.putInt("material", p.getInt("material", PreviewSettings.DEFAULT_MATERIAL));
+            out.putInt("blur", p.getInt("blur", PreviewSettings.DEFAULT_BLUR));
+            out.putInt("keys", p.getInt("keys", PreviewSettings.DEFAULT_KEYS));
+            out.putInt("glass", p.getInt("glass", PreviewSettings.DEFAULT_GLASS));
+            out.putInt("clarity", p.getInt("clarity", PreviewSettings.DEFAULT_CLARITY));
+            out.putInt("clarityInNight", p.getInt("clarityInNight", 0));
+            out.putInt("haptic", p.getInt("haptic", 1));
+            out.putInt("hapticIntensity", p.getInt("hapticIntensity", 60));
+            out.putInt("hapticDuration", p.getInt("hapticDuration", 20));
+            out.putInt("hapticRhythm", p.getInt("hapticRhythm", 0));
+            out.putInt("hapticInterval", p.getInt("hapticInterval", 40));
             out.putLong("restart", p.getLong("restart", 0));
             out.putInt("hwWash", p.getInt("hwWash", 0));
+            out.putInt("hnLiquidTest", p.getInt("hnLiquidTest", 0));
             out.putString("status", status);
         } else if ("report".equals(method)) {
             String[] pkgs = getContext().getPackageManager().getPackagesForUid(Binder.getCallingUid());
